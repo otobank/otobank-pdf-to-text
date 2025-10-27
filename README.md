@@ -10,6 +10,9 @@ PDFファイルからテキストを抽出するスクリプト
 ### formatter.py
 抽出されたテキストを合成音声用に整形するスクリプト
 
+### replacer.py
+不要な記号を一括置換するスクリプト
+
 ### splitter.py
 長いテキストを適切な長さに分割するスクリプト
 
@@ -39,6 +42,9 @@ python converter.py
 
 # テキストを整形
 python formatter.py
+
+# 記号を置換
+python replacer.py
 
 # テキストを分割
 python splitter.py
