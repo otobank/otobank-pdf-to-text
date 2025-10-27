@@ -300,15 +300,16 @@ def split_file(
     print()
     print("✅分割完了！")
 
+
 def main():
     """
-    メイン処理 - output_formatted.txtのみを対象とする
+    メイン処理 - output_replaced.txtのみを対象とする
     """
-    input_file = "output_formatted.txt"
+    input_file = "output_replaced.txt"
     
     if not os.path.exists(input_file):
         print(f"エラー: ファイル '{input_file}' が見つかりません。")
-        print("output_formatted.txt ファイルを同じディレクトリに配置してください。")
+        print("output_replaced.txt ファイルを同じディレクトリに配置してください。")
         return
     
     # 分割設定
