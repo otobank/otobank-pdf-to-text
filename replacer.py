@@ -197,13 +197,13 @@ class TextReplacer:
 def main():
     """メイン処理"""
     # 固定のファイル名で処理
-    input_file = "output_formatted.txt"
+    input_file = "output.txt"
     output_file = "output_replaced.txt"
     
     # 入力ファイルの存在確認
     if not Path(input_file).exists():
         print(f"エラー: {input_file} が見つかりません。")
-        print("output_formatted.txt をカレントディレクトリに配置してください。")
+        print("output.txt をカレントディレクトリに配置してください。")
         sys.exit(1)
     
     replacer = TextReplacer()

@@ -126,8 +126,8 @@ def split_by_sentences(
     current_size = 0
     
     for sentence in combined_sentences:
-        sentence = sentence.strip()
-        if not sentence:
+        # 改行を保持するためstripは行わない。空白のみの断片はスキップ。
+        if not sentence or not sentence.strip():
             continue
             
         sent_size = len(sentence)
@@ -198,7 +198,8 @@ def split_into_sentences(text: str) -> List[str]:
             sentences.append(parts[i] + parts[i + 1])
         else:
             sentences.append(parts[i])
-    return [s for s in (s.strip() for s in sentences) if s]
+    # 改行を保持：中身が実質空の要素だけ除外し、文字列はそのまま返す
+    return [s for s in sentences if s and s.strip()]
 
 def normalize_chunks(chunks: List[str], min_size: int, max_size: int) -> List[str]:
     """
@@ -300,16 +301,15 @@ def split_file(
     print()
     print("✅分割完了！")
 
-
 def main():
     """
-    メイン処理 - output_replaced.txtのみを対象とする
+    メイン処理 - output_lined.txtのみを対象とする
     """
-    input_file = "output_replaced.txt"
+    input_file = "output_lined.txt"
     
     if not os.path.exists(input_file):
         print(f"エラー: ファイル '{input_file}' が見つかりません。")
-        print("output_replaced.txt ファイルを同じディレクトリに配置してください。")
+        print("output_lined.txt ファイルを同じディレクトリに配置してください。")
         return
     
     # 分割設定
