@@ -8,7 +8,7 @@ import re
 import sys
 
 # 入出力ファイル名（書き換え対応用）
-INPUT_FILENAME = "output_replaced.txt"
+INPUT_FILENAME = "output.txt"
 OUTPUT_FILENAME = "output_lined.txt"
 
 
