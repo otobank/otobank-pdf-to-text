@@ -4,14 +4,15 @@ PDFのテキストを合成音声用に整形するためのPythonスクリプ�
 
 ## スクリプト
 
-### replacer.py
-不要な記号を一括置換するスクリプト
-
 ### linebreaker.py
 句読点で改行するスクリプト
 
+### replacer.py
+不要な記号を一括置換するスクリプト
+
 ### splitter.py
 長いテキストを適切な長さに分割するスクリプト
+
 
 ## 使い方
 
@@ -20,11 +21,11 @@ PDFのテキストを合成音声用に整形するためのPythonスクリプ�
 
 ### 2. Pythonスクリプトを上から順に実行する
 ```bash
-# 記号を置換
-python replacer.py
-
 # 句読点で改行
 python linebreaker.py
+
+# 記号を置換
+python replacer.py
 
 # テキストを分割
 python splitter.py
