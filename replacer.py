@@ -13,8 +13,11 @@ class TextReplacer:
         # 単一文字置換ルール定義（順序重要）
         self.replacement_rules = [
             ('・', ''),          # 中点削除
-            ('（', '、'),        # 開き括弧を読点に
-            ('）', '、'),        # 閉じ括弧を読点に
+            ('"', ''),           # ダブルクオテーション削除
+            ('（', '、'),        # 全角開き括弧を読点に
+            ('）', '、'),        # 全角閉じ括弧を読点に
+            ('(', '、'),        # 半角開き括弧を読点に
+            (')', '、'),        # 半角閉じ括弧を読点に
             ('〜', ''),          # 波線削除
             ('「', '、'),        # 開き鍵括弧を読点に
             ('」', ''),          # 閉じ鍵括弧削除
@@ -100,6 +103,30 @@ class TextReplacer:
                 if replacements:
                     changes.extend(replacements)
                     print(f"✓ '{old_char}' → '{new_char if new_char else '[削除]'}' ({count}箇所)")
+        
+        # 文頭の記号（、）を削除
+        lines = processed_text.split('\n')
+        removed_leading_commas = []
+        processed_lines = []
+        
+        for line_num, line in enumerate(lines, 1):
+            original_line = line
+            # 行の先頭にある`、`を削除
+            if line.startswith('、'):
+                line = line.lstrip('、')
+                removed_leading_commas.append({
+                    'line': line_num,
+                    'position': 1,
+                    'context': original_line[:20] if len(original_line) > 20 else original_line,
+                    'old': '、',
+                    'new': '[削除]'
+                })
+            processed_lines.append(line)
+        
+        if removed_leading_commas:
+            processed_text = '\n'.join(processed_lines)
+            changes.extend(removed_leading_commas)
+            print(f"✓ 文頭の'、'を削除 ({len(removed_leading_commas)}箇所)")
         
         return processed_text, changes
     
@@ -197,7 +224,7 @@ class TextReplacer:
 def main():
     """メイン処理"""
     # 固定のファイル名で処理
-    input_file = "output.txt"
+    input_file = "output_lined.txt"
     output_file = "output_replaced.txt"
     
     # 入力ファイルの存在確認
