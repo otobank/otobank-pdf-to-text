@@ -303,13 +303,13 @@ def split_file(
 
 def main():
     """
-    メイン処理 - output_lined.txtのみを対象とする
+    メイン処理 - output_replaced.txtのみを対象とする
     """
     input_file = "output_replaced.txt"
     
     if not os.path.exists(input_file):
         print(f"エラー: ファイル '{input_file}' が見つかりません。")
-        print("output_lined.txt ファイルを同じディレクトリに配置してください。")
+        print("output_replaced.txt ファイルを同じディレクトリに配置してください。")
         return
     
     # 分割設定
