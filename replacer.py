@@ -224,7 +224,7 @@ class TextReplacer:
 def main():
     """メイン処理"""
     # 固定のファイル名で処理
-    input_file = "output_lined.txt"
+    input_file = "output_formatted.txt"
     output_file = "output_replaced.txt"
     
     # 入力ファイルの存在確認
