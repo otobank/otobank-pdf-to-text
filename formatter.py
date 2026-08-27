@@ -111,12 +111,16 @@ def format_extracted_text(input_txt_path, output_txt_path):
 
         # --- ステップ1: 空行とページ番号の行を削除 ---
         filtered_lines = []
-        for line in lines:
-            line = line.strip()
+        for i, raw_line in enumerate(lines):
+            line = raw_line.strip()
             if not line: # 空行は除外
                 continue
-            if PAGE_NUMBER_RE.fullmatch(line): # ページ番号は除外
-                continue
+            # 本文中の数字と区別するため、前後を空行で挟まれた孤立行だけをページ番号とみなす
+            if PAGE_NUMBER_RE.fullmatch(line):
+                prev_blank = i == 0 or not lines[i - 1].strip()
+                next_blank = i + 1 >= len(lines) or not lines[i + 1].strip()
+                if prev_blank and next_blank:
+                    continue
             filtered_lines.append(line)
         
         # --- ステップ2: 1文字ずつの改行を連結（句読点対応） ---
