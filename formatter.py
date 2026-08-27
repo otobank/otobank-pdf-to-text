@@ -32,8 +32,8 @@ ZEN_DIGITS = "０１２３４５６７８９"  # 全角数字
 HAN_DIGITS = "0123456789"            # 半角数字
 ZEN2HAN_TRANS = str.maketrans({zen: han for zen, han in zip(ZEN_DIGITS, HAN_DIGITS)})  # 全角→半角の変換表
 
-PAGE_NUMBER_RE = re.compile(r"\d{,14}$")  # ページ番号だけの行（1〜4桁）を検出
-JPN_SINGLE_CHAR_RE = re.compile(r'[\u3000-\u30FF\u4E00-\u9FFF々]')  # 日本語1文字（ひらがな/カタカナ/漢字/々）
+PAGE_NUMBER_RE = re.compile(r"\d{1,4}")  # ページ番号だけの行（1〜4桁）を検出
+JPN_SINGLE_CHAR_RE = re.compile(r'[0-9\u3000-\u30FF\u4E00-\u9FFF々]')  # 日本語1文字（ひらがな/カタカナ/漢字/々）と数字
 
 # 短い不自然行（1〜2文字の記号や英数字など）を検出するための正規表現
 # ここに含めた文字は「短行」とみなし、前後へ連結、最終的に残った場合は除去します。
