@@ -1,1 +1,5 @@
 venv/
+*.pdf
+output*.txt
+part*.txt
+replaced_list.txt
